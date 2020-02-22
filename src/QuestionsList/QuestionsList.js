@@ -2,7 +2,7 @@ import React from "react";
 import { Question } from "./Question";
 import Grid from "@material-ui/core/Grid";
 
-export const QuestionsList = ({ questions }) => {
+export const QuestionsList = ({ questions, onQuestionSelection }) => {
   return (
     <Grid
       container
@@ -12,7 +12,7 @@ export const QuestionsList = ({ questions }) => {
     >
       {questions.map(question => (
         <div style={{ marginTop: 20 }}>
-          <Question question={question} />
+          <Question question={question} onSelection={onQuestionSelection} />
         </div>
       ))}
     </Grid>

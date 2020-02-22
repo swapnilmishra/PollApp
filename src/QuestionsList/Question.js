@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   }
 });
 
-export const Question = ({ question }) => {
+export const Question = ({ question, onSelection }) => {
   const { question: name, published_at: publishedAt, choices } = question;
 
   const classes = useStyles();
@@ -34,7 +34,11 @@ export const Question = ({ question }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => onSelection(question)}
+        >
           Vote
         </Button>
       </CardActions>
