@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { PollPreviewList } from "../components/PollPreview/PollPreviewList";
 import { Poll } from "../components/PollDetailedView/PollDetailedView";
-import { PollService } from "../services/PollService";
 
 const PAGE_HOME = "questions_list";
 const PAGE_POLL = "poll";
-const POLL_API_HOST = "https://polls.apiblueprint.org";
 
-export const ViewPolls = () => {
+export const ViewPolls = ({ PollService }) => {
   const [currentPage, setPage] = useState(PAGE_HOME);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [pollQuestions, setPollQuestions] = useState([]);
 
   useEffect(() => {
     async function fetchPollQuestions() {
-      await PollService.init(POLL_API_HOST);
       const pollQuestions = await PollService.fetchPollQuestions();
       setPollQuestions(pollQuestions);
     }
     fetchPollQuestions();
-  }, [currentPage]);
+  }, [currentPage, PollService]);
 
   switch (currentPage) {
     case PAGE_POLL:

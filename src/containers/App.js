@@ -4,9 +4,22 @@ import Grid from "@material-ui/core/Grid";
 import { PollService } from "../services/PollService";
 import { CreatePoll } from "../components/CreatePoll/CreatePoll";
 import { ViewPolls } from "./PollHome";
+import { useEffect } from "react";
+
+const POLL_API_HOST = "https://polls.apiblueprint.org";
 
 export default () => {
   const [isInCreateMode, setCreateMode] = useState(false);
+  const [isPollServiceInit, setPollServiceInit] = useState(false);
+
+  useEffect(() => {
+    async function serviceInit() {
+      await PollService.init(POLL_API_HOST);
+      setPollServiceInit(true);
+    }
+    serviceInit();
+  }, []);
+
   return (
     <>
       <Grid
@@ -21,18 +34,19 @@ export default () => {
           Create a poll
         </Button>
       </Grid>
-      {isInCreateMode ? (
-        <CreatePoll
-          open={true}
-          onCreatePoll={({ question, choices }) => {
-            PollService.createPoll({ question, choices });
-            setCreateMode(false);
-          }}
-          handleClose={() => setCreateMode(false)}
-        />
-      ) : (
-        <ViewPolls />
-      )}
+      {isPollServiceInit &&
+        (isInCreateMode ? (
+          <CreatePoll
+            open={true}
+            onCreatePoll={({ question, choices }) => {
+              PollService.createPoll({ question, choices });
+              setCreateMode(false);
+            }}
+            handleClose={() => setCreateMode(false)}
+          />
+        ) : (
+          <ViewPolls PollService={PollService} />
+        ))}
     </>
   );
 };
