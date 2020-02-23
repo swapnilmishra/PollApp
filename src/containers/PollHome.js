@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { QuestionsList } from "../components/QuestionsList/QuestionsList";
-import { Poll } from "../components/ViewPoll/Poll";
+import { PollPreviewList } from "../components/PollPreview/PollPreviewList";
+import { Poll } from "../components/PollDetailedView/PollDetailedView";
 import { PollService } from "../services/PollService";
 
 const PAGE_HOME = "questions_list";
@@ -36,7 +36,7 @@ export const ViewPolls = () => {
 
     default:
       return (
-        <QuestionsList
+        <PollPreviewList
           questions={pollQuestions}
           onQuestionSelection={question => {
             setSelectedQuestion(question);
