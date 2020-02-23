@@ -13,6 +13,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import { makeStyles } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,10 +48,13 @@ export const PollDetails = ({ question, onVote, onBack }) => {
   const [selectedValue, setSelectedValue] = useState(null);
   const [selectedChoice, setSelectedChoice] = useState(null);
 
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+
   return (
     <>
       <Button onClick={onBack}>{`< Go Back`}</Button>
-      <Card>
+      <Card style={matches ? { marginLeft: 10, marginRight: 10 } : {}}>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h1">
             {questionName}
