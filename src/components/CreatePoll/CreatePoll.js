@@ -7,22 +7,17 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-export const CreatePoll = ({ onCreatePoll, open }) => {
-  //   const [open, setOpen] = useState(false);
+export const CreatePoll = ({ onCreatePoll, open, handleClose }) => {
   const [choices, setChoice] = useState([]);
   const [question, setQuestion] = useState();
   const choiceTextFieldRef = useRef(null);
   const questionTextFieldRef = useRef(null);
 
-  //   const handleClose = () => {
-  //     setOpen(false);
-  //   };
-
   return (
     <div>
       <Dialog
         open={open}
-        // onClose={handleClose}
+        onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Create poll</DialogTitle>

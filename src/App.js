@@ -29,6 +29,7 @@ export default () => {
             PollService.createPoll({ question, choices });
             setCreateMode(false);
           }}
+          handleClose={() => setCreateMode(false)}
         />
       ) : (
         <ViewPolls />
