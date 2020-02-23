@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import "./App.css";
-import { PollService } from "./services/PollService";
-import { CreatePoll } from "./components/CreatePoll/CreatePoll";
-import { ViewPolls } from "./containers/PollHome";
+import { PollService } from "../services/PollService";
+import { CreatePoll } from "../components/CreatePoll/CreatePoll";
+import { ViewPolls } from "./PollHome";
 
 export default () => {
   const [isInCreateMode, setCreateMode] = useState(false);
