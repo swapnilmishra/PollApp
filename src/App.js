@@ -15,7 +15,10 @@ function App() {
     case PAGE_POLL:
       return (
         <div className="App-header">
-          <Poll question={selectedQuestion} />
+          <Poll
+            question={selectedQuestion}
+            onVote={selectedChoice => console.log(selectedChoice)}
+          />
         </div>
       );
     default:
