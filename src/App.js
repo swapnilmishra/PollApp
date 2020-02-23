@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import data from "./data";
-import { QuestionsList } from "./QuestionsList/QuestionsList";
-import { Poll } from "./Poll/Poll";
+import { QuestionsList } from "./components/QuestionsList/QuestionsList";
+import { Poll } from "./components/Poll/Poll";
 
 const PAGE_HOME = "questions_list";
 const PAGE_POLL = "poll";
