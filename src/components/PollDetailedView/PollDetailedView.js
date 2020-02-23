@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { FormControlLabel, CircularProgress } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
@@ -106,13 +107,21 @@ export const Poll = ({ question, onVote, onBack }) => {
           </TableContainer>
         </CardContent>
         <CardActions>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => onVote(selectedChoice)}
+          <Grid
+            style={{ paddingLeft: 10, paddingRight: 10 }}
+            container
+            direction="row"
+            justify="flex-end"
+            alignItems="center"
           >
-            Save vote
-          </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => onVote(selectedChoice)}
+            >
+              Save vote
+            </Button>
+          </Grid>
         </CardActions>
       </Card>
     </>
