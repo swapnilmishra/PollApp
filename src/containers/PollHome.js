@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { QuestionsList } from "../components/QuestionsList/QuestionsList";
-import { Poll } from "../components/Poll/Poll";
+import { Poll } from "../components/ViewPoll/Poll";
 import { PollService } from "../services/PollService";
 
 const PAGE_HOME = "questions_list";

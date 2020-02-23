@@ -11,7 +11,7 @@ export default () => {
   return (
     <>
       <Grid
-        style={{ paddingLeft: 20, paddingRight: 20 }}
+        style={{ paddingLeft: 10, paddingRight: 10 }}
         container
         direction="row"
         justify="space-between"
