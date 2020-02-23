@@ -29,7 +29,7 @@ export default () => {
         justify="space-between"
         alignItems="center"
       >
-        <h1>Quizzify App</h1>
+        <h1>Pollify App</h1>
         <Button variant="contained" onClick={() => setCreateMode(true)}>
           Create a poll
         </Button>
