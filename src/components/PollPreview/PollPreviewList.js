@@ -1,5 +1,5 @@
 import React from "react";
-import { PollPreviewCard } from "./PollPreviewCard";
+import { PollPreview } from "./PollPreview";
 import Grid from "@material-ui/core/Grid";
 
 export const PollPreviewList = ({ questions, onQuestionSelection }) => {
@@ -12,10 +12,7 @@ export const PollPreviewList = ({ questions, onQuestionSelection }) => {
     >
       {questions.map(question => (
         <div style={{ marginTop: 20 }}>
-          <PollPreviewCard
-            question={question}
-            onSelection={onQuestionSelection}
-          />
+          <PollPreview question={question} onSelection={onQuestionSelection} />
         </div>
       ))}
     </Grid>

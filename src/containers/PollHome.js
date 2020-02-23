@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { PollPreviewList } from "../components/PollPreview/PollPreviewList";
-import { Poll } from "../components/PollDetailedView/PollDetailedView";
+import { PollDetails } from "../components/PollDetails/PollDetails";
 
 const PAGE_HOME = "questions_list";
 const PAGE_POLL = "poll";
@@ -21,7 +21,7 @@ export const ViewPolls = ({ PollService }) => {
   switch (currentPage) {
     case PAGE_POLL:
       return (
-        <Poll
+        <PollDetails
           question={selectedQuestion}
           onVote={async selectedChoice => {
             await PollService.postSelectedPollChoice(selectedChoice);

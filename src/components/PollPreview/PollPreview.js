@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   }
 });
 
-export const PollPreviewCard = ({ question, onSelection }) => {
+export const PollPreview = ({ question, onSelection }) => {
   const { question: name, published_at: publishedAt, choices } = question;
 
   const classes = useStyles();

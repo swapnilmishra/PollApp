@@ -39,7 +39,7 @@ const calculateVotePercent = (vote, totalVotes) => {
   return percentage;
 };
 
-export const Poll = ({ question, onVote, onBack }) => {
+export const PollDetails = ({ question, onVote, onBack }) => {
   const classes = useStyles();
   const { question: questionName, choices } = question;
   const totalVotes = calculateTotalVotes(choices);
