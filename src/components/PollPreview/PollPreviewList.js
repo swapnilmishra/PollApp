@@ -11,7 +11,7 @@ export const PollPreviewList = ({ questions, onQuestionSelection }) => {
       alignItems="flex-start"
     >
       {questions.map(question => (
-        <div style={{ marginTop: 20 }}>
+        <div style={{ marginTop: 20 }} key={question.url}>
           <PollPreview question={question} onSelection={onQuestionSelection} />
         </div>
       ))}
