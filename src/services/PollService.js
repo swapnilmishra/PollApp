@@ -25,4 +25,18 @@ export class PollService {
     const responseJSON = await response.json();
     return responseJSON;
   };
+
+  static createPoll = async ({ question, choices }) => {
+    const response = await fetch(this.questionsUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ question, choices })
+    });
+
+    if (response.ok) {
+      console.log("Poll created");
+    }
+  };
 }
