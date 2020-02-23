@@ -38,7 +38,7 @@ const calculateVotePercent = (vote, totalVotes) => {
   return percentage;
 };
 
-export const Poll = ({ question, onVote }) => {
+export const Poll = ({ question, onVote, onBack }) => {
   const classes = useStyles();
   const { question: questionName, choices } = question;
   const totalVotes = calculateTotalVotes(choices);
@@ -46,71 +46,75 @@ export const Poll = ({ question, onVote }) => {
   const [selectedChoice, setSelectedChoice] = useState(null);
 
   return (
-    <Card>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h1">
-          {questionName}
-        </Typography>
-        <TableContainer>
-          <Table aria-label="simple table">
-            <TableBody>
-              {choices.map(choice => {
-                const choiceName = choice.choice;
-                return (
-                  <TableRow key={choiceName}>
-                    <TableCell component="th" scope="row">
-                      <FormControlLabel
-                        value={choiceName}
-                        control={
-                          <Radio
-                            checked={selectedValue === choiceName}
-                            onChange={() => {
-                              setSelectedValue(choiceName);
-                              setSelectedChoice(choice);
-                            }}
-                            value={choiceName}
-                            name="radio-button-choice"
-                            inputProps={{ "aria-label": choiceName }}
-                          />
-                        }
-                        label={choiceName}
-                        labelPlacement="end"
-                      />
-                    </TableCell>
-                    <TableCell align="right">
-                      <Typography variant="body1">
-                        {choice.votes} votes
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="right">
-                      <Typography variant="body1">
-                        {calculateVotePercent(choice.votes, totalVotes)}%
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <div className={classes.root}>
-                        <CircularProgress
-                          variant="static"
-                          value={calculateVotePercent(choice.votes, totalVotes)}
+    <>
+      <Button onClick={onBack}>{`< Go Back`}</Button>
+      <Card>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h1">
+            {questionName}
+          </Typography>
+          <TableContainer>
+            <Table aria-label="simple table">
+              <TableBody>
+                {choices.map(choice => {
+                  const choiceName = choice.choice;
+                  const votePercent = Math.floor(
+                    calculateVotePercent(choice.votes, totalVotes)
+                  );
+                  return (
+                    <TableRow key={choiceName}>
+                      <TableCell component="th" scope="row">
+                        <FormControlLabel
+                          value={choiceName}
+                          control={
+                            <Radio
+                              checked={selectedValue === choiceName}
+                              onChange={() => {
+                                setSelectedValue(choiceName);
+                                setSelectedChoice(choice);
+                              }}
+                              value={choiceName}
+                              name="radio-button-choice"
+                              inputProps={{ "aria-label": choiceName }}
+                            />
+                          }
+                          label={choiceName}
+                          labelPlacement="end"
                         />
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </CardContent>
-      <CardActions>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => onVote(selectedChoice)}
-        >
-          Save vote
-        </Button>
-      </CardActions>
-    </Card>
+                      </TableCell>
+                      <TableCell align="right">
+                        <Typography variant="body1">
+                          {choice.votes} votes
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="right">
+                        <Typography variant="body1">{votePercent}%</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <div className={classes.root}>
+                          <CircularProgress
+                            variant="static"
+                            value={votePercent}
+                          />
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </CardContent>
+        <CardActions>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => onVote(selectedChoice)}
+          >
+            Save vote
+          </Button>
+        </CardActions>
+      </Card>
+    </>
   );
 };
